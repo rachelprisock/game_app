@@ -1,0 +1,15 @@
+<h1>Welcome to Rachel's 8bit Reviews App!</h1>
+<h2>Click on any game to play:</h2>
+
+<table>
+	<tr>
+		<th>Game Name:</th>
+		<th>Game Link:</th>
+	</tr>
+	<% @games.each do |game| %>
+		<tr>
+			<td><%= game.name %></td>
+			<td><%= link_to 'Play', game_path(game) %></td>
+		</tr>
+	<% end %>
+</table>

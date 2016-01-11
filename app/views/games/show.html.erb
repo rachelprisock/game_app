@@ -1,0 +1,29 @@
+<h1><%= @game.name %></h1>
+
+<iframe width="560"  height="560" src="<%= @game.link %>"></iframe>
+
+<br>
+
+<table>
+	<tr>
+		<th>Rating:</th>
+		<th>Review:</th>
+	<% @game.reviews.each do |review| %>
+		<tr>
+			<td><%= review.rating %></td>
+			<td><%= review.body %></td>
+			<td><%= link_to 'Edit', edit_game_review_path(review.game_id, review.id) %></td>
+			<td><%= link_to 'Destroy', game_review_path(review.game_id, review.id),
+											method: :delete,
+											data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+	<% end %>
+</table>
+
+<br>
+
+<%= link_to 'New Review', new_game_review_path(@game) %>
+
+
+
+

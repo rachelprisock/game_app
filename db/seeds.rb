@@ -5,3 +5,37 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+games = [
+	{
+		name: "Tron",
+		link: "http://www.8bit.com/everything/do-not-hotlink/trongame.swf"
+	},
+	{
+		name: "Donkey Kong", 
+		link: "http://www.8bit.com/everything/do-not-hotlink/donkeykong.swf"
+	},
+	{
+		name: "Frogger",
+		link: "http://www.8bit.com/everything/do-not-hotlink/frogger.swf"
+	},
+	{
+		name: "PacManIsh", 
+		link: "http://www.8bit.com/everything/do-not-hotlink/pacxon.swf"
+	},
+	{
+		name: "Super Mario World", 
+		link: "http://www.8bit.com/everything/do-not-hotlink/supermarioworld.swf"
+	},
+	{
+		name: "Space Invaders", 
+		link: "http://www.8bit.com/everything/do-not-hotlink/spaceinvaders.swf"
+	},
+	{
+		name: "Duck Hunt", 
+		link: "http://www.8bit.com/everything/do-not-hotlink/duckhunt.swf"
+	}
+]
+
+games.each{ |game| Game.create(game) }
+
