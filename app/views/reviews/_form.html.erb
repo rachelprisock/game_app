@@ -1,13 +1,17 @@
 <%= form_for([@game, @review]) do |f| %>
-	<p>
-		<%= f.label :rating %>
-		<%= f.text_field :rating %>
-	</p>
-	<p>
-		<%= f.label :body %>
-		<%= f.text_area :body %>
-	</p>
-	<p>
-		<%= f.submit %>
-	</p>
+	<div class="form-group">
+		<p>You are reviewing as <strong><%= current_user.email %></strong>
+		<%= f.hidden_field :user_id, :value => @user.id %>
+	</div>
+	<div class="form-group">
+		<%= f.label :rating, 'Rating' %>
+		<%= f.select(:rating, 1...6) %>
+	</div>
+	<div class="form-group">
+		<%= f.label :body, 'Review' %>
+		<%= f.text_area :body, :class => 'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.submit "Post my Review", class: "btn btn-large btn-primary" %>
+	</div>
 <% end %>

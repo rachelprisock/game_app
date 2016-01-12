@@ -1,15 +1,24 @@
-<h1>Welcome to Rachel's 8bit Reviews App!</h1>
-<h2>Click on any game to play:</h2>
+<div class="container">
+	<div class="page-header" style="text-align: center;">
+		<h1>Welcome to Rachel's 8bit Reviews App<br/><small>Kick back and relax with these old school games and let us know how you liked it!</small></h1>
+	</div>
 
-<table>
-	<tr>
-		<th>Game Name:</th>
-		<th>Game Link:</th>
-	</tr>
+
 	<% @games.each do |game| %>
-		<tr>
-			<td><%= game.name %></td>
-			<td><%= link_to 'Play', game_path(game) %></td>
-		</tr>
+		<div class="column">
+		  <div class="col-sm-6 col-md-4">
+			    <div class="thumbnail" style=" text-align: center;">
+			    </br>
+			      <iframe width="150"  height="150" src="<%= game.link %>"></iframe>
+			      <div class="caption">
+			        <h3><%= game.name %><br/><small>Click the window to preview</small></h3>
+			        <p>Average Rating <%= game.reviews.average(:rating) %></p>
+			        <p><%= link_to 'Play', game_path(game), class: 'btn btn-success btn-lg' %></p>
+			      </div>
+			    </div>
+
+		  </div>
+		</div>
 	<% end %>
-</table>
+</div>
+

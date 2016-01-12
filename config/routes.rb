@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
+
+  get 'welcome/about'
+
+  devise_for :users
+
   resources :games, only: [:index, :show] do
     resources :reviews, except: [:index]
   end
   
-  resources :users
+  resource :users
 
   get 'games/index'
 

@@ -1,28 +1,44 @@
-<h1><%= @game.name %></h1>
+<center>
+	<div class="page-header">
+	  <h1><%= @game.name %><br/><small>Average Rating: <%= @game.reviews.average(:rating) %> / 5</small></h1>
+	</div>
+	<br/>
+	<iframe width="560"  height="560" src="<%= @game.link %>"></iframe>
+	<br/>
+	<div class="page-header">
+  	<%= link_to 'Review this game!', new_game_review_path(@game), class: 'btn btn-success btn-lg' %>
+	</div>
 
-<iframe width="560"  height="560" src="<%= @game.link %>"></iframe>
-
-<br>
-
-<table>
-	<tr>
-		<th>Rating:</th>
-		<th>Review:</th>
-	<% @game.reviews.each do |review| %>
+	<br/>
+	<br/>
+	<table class="table table-hover">
 		<tr>
-			<td><%= review.rating %></td>
-			<td><%= review.body %></td>
-			<td><%= link_to 'Edit', edit_game_review_path(review.game_id, review.id) %></td>
-			<td><%= link_to 'Destroy', game_review_path(review.game_id, review.id),
-											method: :delete,
-											data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-	<% end %>
-</table>
+			<th>User:</th>
+			<th>Rating:</th>
+			<th>Review:</th>
+			<th>Created:</th>
+			<th>Update:</th>
+			<th>Destroy:</th>
+		<% @game.reviews.each do |review| %>
+			<tr class="active">
+				<% if review.user != nil %>
+					<td><%= review.user.email %></td>
+				<% else %>
+					<td>No User</td>
+				<% end %>
+				<td><%= review.rating %></td>
+				<td><%= review.body %></td>
+				<td><%= review.created_at.strftime("%b-%d-%y | %H:%M") %></td>
+					<td><%= link_to 'Edit', edit_game_review_path(review.game_id, review.id), class: 'btn btn-primary' %></td>
+					<td><%= link_to 'Delete', game_review_path(review.game_id, review.id), class: 'btn
+		 btn-danger',
+													method: :delete,
+													data: { confirm: 'Are you sure?' } %></td>
 
-<br>
-
-<%= link_to 'New Review', new_game_review_path(@game) %>
+			</tr>
+		<% end %>
+	</table>
+</center>
 
 
 

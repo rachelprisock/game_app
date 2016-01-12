@@ -6,9 +6,62 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<header class="container">
+  <div>
+  	<nav class="navbar navbar-default ">
+          <div class="container-fluid">
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="primary"><%= link_to 'Game List', games_path, class: 'btn btn-lg' %></a></li>
+                <li><%= link_to 'About', welcome_about_path , class: 'btn btn-lg' %></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+              	<li class="dropdown">
+              		<% if user_signed_in? %>
+              			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in as <strong><%= current_user.email %></strong><span class="caret"></span></a>
+              				<ul class="dropdown-menu">
+  		                  <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link', class: 'btn btn-md' %></li>
+  		                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link', class: 'btn btn-md'  %></li>
+  		                </ul>
+              		<% else %>
+                  	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">You are not signed in<span class="caret"></span></a>
+  		                <ul class="dropdown-menu">
+  		                  <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link', class: 'btn btn-md'  %></li>
+  		                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link', class: 'btn btn-md'  %></li>
+  		                </ul>
+  		            <% end %>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!--/.container-fluid -->
+        </nav>
+  </div>
 
-<%= yield %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
 
-</body>
+
+  <%= yield %>
+
+</header>
+
+<footer>
+  <body class="container">
+  <div>
+    <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="https://www.linkedin.com/in/rachelprisock">LinkedIn</a></li>
+                <li><a href="https://github.com/rachelprisock">Github</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!--/.container-fluid -->
+        </nav>
+  </div>
+</footer>
 </html>

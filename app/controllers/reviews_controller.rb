@@ -1,17 +1,19 @@
 class ReviewsController < ApplicationController
+	before_action :authenticate_user!
+
 
 	def new
 		@game = Game.find(params[:game_id])
 		@review = @game.reviews.build
+		@user = current_user
 	end
 
-	def show
-		@review = Review.find(params[:game_id, :id])
-	end
 
 	def create
 		@game = Game.find(params[:game_id])
 		@review = @game.reviews.build(review_params)
+		@user = current_user
+
 
 		if @review.save
 			redirect_to game_path(@game)
@@ -24,6 +26,7 @@ class ReviewsController < ApplicationController
 	def edit
 		@game = Game.find(params[:game_id])
 		@review = Review.find(params[:id])
+
 	end
 
 	def update
@@ -47,6 +50,6 @@ class ReviewsController < ApplicationController
 
 	private
 	def review_params
-		params.require(:review).permit(:rating, :body)
+		params.require(:review).permit(:rating, :body, :user_id)
 	end
 end
