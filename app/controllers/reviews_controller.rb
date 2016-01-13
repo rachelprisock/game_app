@@ -26,12 +26,13 @@ class ReviewsController < ApplicationController
 	def edit
 		@game = Game.find(params[:game_id])
 		@review = Review.find(params[:id])
-
+		@user = current_user
 	end
 
 	def update
 		@game = Game.find(params[:game_id])
 		@review = Review.find(params[:id])
+		@user = current_user
 
 		if @review.update(review_params)
 			redirect_to game_path(@game)
