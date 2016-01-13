@@ -29,11 +29,16 @@
 				<td><%= review.rating %></td>
 				<td><%= review.body %></td>
 				<td><%= review.created_at.strftime("%b-%d-%y | %H:%M") %></td>
+				<% if review.user != current_user %>
+					<td>Not authorized</td>
+					<td>Not authorized</td>
+				<% else %>
 					<td><%= link_to 'Edit', edit_game_review_path(review.game_id, review.id), class: 'btn btn-primary' %></td>
 					<td><%= link_to 'Delete', game_review_path(review.game_id, review.id), class: 'btn
 		 btn-danger',
 													method: :delete,
 													data: { confirm: 'Are you sure?' } %></td>
+				<% end %>
 
 			</tr>
 		<% end %>
